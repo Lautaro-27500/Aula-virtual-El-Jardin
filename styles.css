@@ -1,0 +1,159 @@
+/* Importamos las tipografías de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@500;600;700&display=swap');
+
+/* 1. VARIABLES GLOBALES (:root) */
+:root {
+    --color-principal: #D6457C;
+    --color-secundario: #a385e0; /* Violeta suave */
+    --color-fondo: #f8f9fa; /* Fondo claro */
+    --color-texto: #333333;
+    --color-blanco: #ffffff;
+    
+    --fuente-titulos: 'Poppins', system-ui, sans-serif;
+    --fuente-texto: 'Inter', system-ui, sans-serif;
+    
+    --sombra-tarjeta: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* 2. REINICIO Y ESTILO BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-texto);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+    padding: 1rem;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* 3. TIPOGRAFÍAS PARA TÍTULOS */
+h1, h2, h3 {
+    font-family: var(--fuente-titulos);
+    color: var(--color-principal);
+    margin-bottom: 1rem;
+}
+
+/* 4. ENCABEZADO (Diseño Celular por defecto) */
+header {
+    background-color: var(--color-blanco);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--sombra-tarjeta);
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* 5. TARJETAS (Cursos, Muro, Formularios) */
+form, .tarjeta-curso, .publicacion, #contenedor-consigna, #lista-entregas li {
+    background-color: var(--color-blanco);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--sombra-tarjeta);
+    margin-bottom: 1.5rem;
+}
+
+.tarjeta-curso {
+    border-top: 6px solid var(--color-principal);
+}
+
+ul {
+    list-style: none;
+}
+
+/* 6. ENTRADAS DE DATOS (Inputs y Textareas) */
+input, select, textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: var(--fuente-texto);
+    outline-color: var(--color-secundario);
+}
+
+/* 7. BOTONES (Con efecto Hover) */
+button {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-family: var(--fuente-titulos);
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--color-secundario);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(163, 133, 224, 0.4);
+}
+
+/* 8. DISEÑO RESPONSIVO (A partir de 768px - Tablets y PCs) */
+@media (min-width: 768px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    button {
+        width: auto;
+    }
+
+    #grilla-cursos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* 9. CONTROL DE ACCESO (Docente/Alumno) */
+body[data-modo="alumno"] .solo-docente {
+    display: none !important;
+}
+
+body[data-modo="docente"] .solo-alumno {
+    display: none !important;
+}
+
+/* --- 10. AJUSTES PARA CELULAR (Paso 1 del TP11) --- */
+
+/* Asegurar tamaño mínimo para tocar con el dedo cómodamente */
+button, input, select, textarea {
+    min-height: 44px;
+}
+
+/* Menú inferior fijo en celulares (pantallas menores a 600px) */
+@media (max-width: 600px) {
+    header {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        margin-bottom: 0;
+        border-radius: 16px 16px 0 0;
+        z-index: 1000;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 1rem;
+        box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+    }
+    
+    /* Le damos espacio al final del main para que el menú no tape el contenido */
+    main {
+        padding-bottom: 140px;
+    }
+}
